@@ -14,9 +14,15 @@ def add_total_goals(data):
     df = data.assign(total_goals=data.home + data.away)
     return df
 
+
 def change_to_bool(data):
-    df = data.assign(are_more_goal = lambda dataframe: dataframe['total_goals'].map(lambda total_goals: True if total_goals >= 3 else False))
+    df = data.assign(
+        are_more_goal=lambda dataframe: dataframe["total_goals"].map(
+            lambda total_goals: True if total_goals >= 3 else False
+        )
+    )
     return df
+
 
 def main():
     cleaned_data = add_total_goals(data)
